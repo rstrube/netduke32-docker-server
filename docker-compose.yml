@@ -30,8 +30,6 @@ services:
     # without editing this file. See HOSTING_GUIDE.md for examples.
     command:
       - "/opt/netduke32/start.sh"
-      - "-nosetup"
-      - "-nologo"
       - "-ns"
       - "-nm"
       - "-c${GAMEMODE:-2}"

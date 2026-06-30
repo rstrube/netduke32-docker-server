@@ -119,12 +119,13 @@ Anyone connecting needs a NetDuke32 client and their own copy of `DUKE3D.GRP` / 
 **The join syntax matters and is easy to get wrong.** It is *not* `-net ip:port`:
 
 ```
-netduke32 -nosetup -nologo -net <host-ip> -n0:<PLAYERS> -p23513
+netduke32 -net <host-ip> -n0:<PLAYERS> -p23513
 ```
 
 - `-n0:<PLAYERS>` must match the `PLAYERS` value the host was started with.
 - `-p23513` must match the host's port.
 - Episode/level/game mode are inherited from the host — don't pass `-v`/`-l`/`-c` on the client.
+- `-nosetup` and `-nologo` aren't needed here — multiplayer mode already skips the startup dialog and intro animation on its own. Including them on the client is actually worth avoiding: they've been observed to reset renderer settings (e.g. Polymer) back to defaults in `netduke32.cfg`.
 
 ## Known quirks of a headless host
 
