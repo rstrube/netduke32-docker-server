@@ -7,12 +7,32 @@ services:
         UID: 1000
         GID: 1000
     container_name: netduke32
+    # On-demand service, not always-on: NetDuke32's master/slave netcode
+    # requires every player (including the host) to be ready and connect
+    # at the same time -- there's no late joining, so there's no benefit
+    # to keeping this running when nobody's playing.
     restart: "no"
-    init: true
-    tty: true
+    init: true       # see notes below: required for xvfb/xvnc-wrapped CMD
+    tty: true         # keeps stdout line-buffered for `docker compose logs -f`
     stdin_open: true
     user: "1000:1000"
     ports:
       - "23513:23513/udp"
     volumes:
+      # Bind-mounted straight into NetDuke32's actual config/data search
+      # path. DUKE3D.GRP, DUKE.RTS, netduke32.cfg, and
+      # netduke32_settings.cfg all live here and are auto-detected with
+      # zero extra command-line flags.
       - ./gamedata:/home/ubuntu/.config/netduke32
+
+# Notes:
+# - `init: true` matters if you ever launch this via `docker compose up`
+#   directly (CMD becomes container PID 1). The bundled xvfb/xvnc-style
+#   startup script depends on normal job-control signal handling that
+#   PID 1 doesn't get by default in a container; tini (Docker's built-in
+#   init) fixes this. It's not needed when manually bash-ing into the
+#   container and running start.sh by hand, since bash is PID 1 in that
+#   case instead.
+#
+# - Standard `docker compose build` / `up -d` / `down` workflow applies.
+#   See HOSTING_GUIDE.md for the actual game-night commands.
