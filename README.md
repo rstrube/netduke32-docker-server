@@ -173,6 +173,11 @@ Because the host is a real, participating player rather than invisible
 infrastructure, a few things behave differently than you might expect
 from a typical game server:
 
+- **The host's character will consume a player slot.** Given everything
+  that has already been stated, this might be obvious. The end result is
+  that you have to +1 to the player count.  E.g. if you want to play with
+  4 of your friends, you'll need to start the server with support for 5
+  total players.
 - **The host's character does not respawn after dying.** In Dukematch,
   this means it's technically possible for someone to score a single
   kill against the host's character early on — but after that, the
