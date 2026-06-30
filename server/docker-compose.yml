@@ -1,0 +1,18 @@
+services:
+  netduke32:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
+    container_name: netduke32
+    restart: "no"
+    init: true
+    tty: true
+    stdin_open: true
+    user: "1000:1000"
+    ports:
+      - "23513:23513/udp"
+    volumes:
+      - ./gamedata:/home/ubuntu/.config/netduke32
