@@ -24,6 +24,24 @@ services:
       # netduke32_settings.cfg all live here and are auto-detected with
       # zero extra command-line flags.
       - ./gamedata:/home/ubuntu/.config/netduke32
+    # Overrides the image's default CMD with a real multiplayer host
+    # launch. Values are parametrized via env vars (with defaults) so
+    # session settings can be passed in at `docker compose up` time
+    # without editing this file. See HOSTING_GUIDE.md for examples.
+    command:
+      - "/opt/netduke32/start.sh"
+      - "-nosetup"
+      - "-nologo"
+      - "-ns"
+      - "-nm"
+      - "-c${GAMEMODE:-2}"
+      - "-name"
+      - "${HOSTNAME_INGAME:-Server}"
+      - "-v${EPISODE:-1}"
+      - "-l${LEVEL:-1}"
+      - "-net"
+      - "-n0:${PLAYERS:-2}"
+      - "-p23513"
 
 # Notes:
 # - `init: true` matters if you ever launch this via `docker compose up`
