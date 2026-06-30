@@ -139,4 +139,4 @@ Neither of the latter two is a bug in this setup specifically — they're conseq
 ## Acknowledgments
 
 - [EDuke32](https://voidpoint.io/EDuke32/eduke32) / [NetDuke32](https://voidpoint.io/StrikerTheHedgefox/eduke32-csrefactor) by StrikerTheHedgefox and contributors
-- Build pinned to NY00123's maintained fork, tag `netduke32-r11589-post_v1.2.1-345003a8d` — also the build bundled in [NukemNet](https://nukemnet.com)'s Complete Fun Pack
+- Build pinned to NY00123's maintained fork, tag [`netduke32-r11589-post_v1.2.1-345003a8d`](https://voidpoint.io/NY00123/eduke32-csrefactor/-/releases/netduke32-r11589-post_v1.2.1-345003a8d) — also the build bundled in [NukemNet](https://nukemnet.com)'s Complete Fun Pack
